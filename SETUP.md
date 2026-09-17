@@ -80,27 +80,44 @@ broken form — so a half-finished setup can never look like a working one.
 
 ---
 
-## 2. Publish the site
+## 2. Publish the site (Cloudflare Workers)
 
-In the GitHub repo: **Settings → Pages → Source: GitHub Actions**. The included
-workflow deploys on every push to `main`.
+The repo is configured for **Cloudflare Workers Builds**. In the Cloudflare
+dashboard, under the Worker's **Build configuration**:
 
-Then, at your domain registrar, point `theunpaidelite.com` at GitHub Pages:
+| Field | Value |
+|---|---|
+| Build command | *leave empty* — there is no build step |
+| Deploy command | `npx wrangler deploy` |
+| Version command | `npx wrangler versions upload` |
+| Root directory | `/` |
 
-| Type | Name | Value |
-|---|---|---|
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
-| CNAME | www | samjohnson4412.github.io |
+`wrangler.jsonc` does the rest. It serves the repo root as static files, sends
+unknown URLs to `404.html`, and makes tidy URLs work (`/get-paid` as well as
+`/get-paid.html`).
 
-Back in **Settings → Pages**, set the custom domain to `theunpaidelite.com` and
-tick **Enforce HTTPS** once the certificate is issued (takes a few minutes to an hour).
+`.assetsignore` keeps repo housekeeping — this file, the README, the wrangler
+config — from being served as part of the site.
 
-The `CNAME` file in this repo already holds the domain, so it survives redeploys.
+### Branches
 
----
+Cloudflare deploys the **production branch** you select when connecting the
+repo. Point it at `main`. Pushes to any other branch produce a preview
+deployment, not a production one, so work can be reviewed on a preview URL
+before it reaches the real domain.
+
+### The domain
+
+In the Cloudflare dashboard: **Workers & Pages → theunpaidelite → Settings →
+Domains & Routes → Add → Custom domain**, and add both `theunpaidelite.com` and
+`www.theunpaidelite.com`.
+
+If the domain's DNS is already on Cloudflare, records are created automatically
+and TLS is issued within a few minutes. If it is registered elsewhere, move the
+nameservers to Cloudflare first.
+
+There is no `CNAME` file in this repo — that is a GitHub Pages mechanism and
+Cloudflare does not use it.
 
 ## 3. Keeping it current
 

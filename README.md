@@ -20,8 +20,12 @@ sam@crossroadstechnology.co.
 ## Stack
 
 Static HTML, one stylesheet, one script. No build step, no framework, no
-dependencies, no cookies, no analytics. Deployed to GitHub Pages by
-`.github/workflows/pages.yml` on push to `main`.
+dependencies, no cookies, no analytics.
+
+Deployed to **Cloudflare Workers** via Workers Builds. `main` is the production
+branch; every other branch gets a preview deployment. Configuration lives in
+`wrangler.jsonc`, and `.assetsignore` keeps repo housekeeping out of the served
+site.
 
 Every figure on the site is read at runtime from `data/stats.json` — edit that file
 to update the numbers, not the HTML.
@@ -29,8 +33,8 @@ to update the numbers, not the HTML.
 ## Editing
 
 Pages are plain HTML with a duplicated header and footer. If you change the nav,
-change it in all six files (`index`, `claim`, `evidence`, `get-paid`, `record`,
-`about`, plus `404.html`).
+change it in all seven files (`index`, `claim`, `evidence`, `get-paid`, `record`,
+`about`, `404`).
 
 Data files:
 

@@ -1,0 +1,19 @@
+{
+  // Static site — no server code, no build step. Wrangler uploads the files as-is
+  // and serves them from Cloudflare's edge.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "theunpaidelite",
+  "compatibility_date": "2026-09-17",
+
+  "assets": {
+    "directory": "./",
+    // A bad URL serves 404.html instead of a blank Cloudflare error page.
+    "not_found_handling": "404-page",
+    // /get-paid and /get-paid.html both work, and the tidy URL is canonical.
+    "html_handling": "auto-trailing-slash"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}
