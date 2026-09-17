@@ -14,11 +14,6 @@ window.SITE = {
               page frames it as an inset document rather than pretending it matches. */
   embedClaimForm: false,
 
-  tally: {
-    /* Document upload + permission choices. A Tally URL looks like
-       https://tally.so/r/wABC12 — the ID is the part after /r/. */
-    evidence: "REPLACE_WITH_EVIDENCE_FORM_ID"
-  },
 
   /* Public court record. */
   judgment: {

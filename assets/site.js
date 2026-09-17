@@ -142,45 +142,6 @@
     });
   }
 
-  /* Tally embeds. Renders a visible setup panel while the form ID is still a placeholder,
-     so a half-configured page can never look like a working form. */
-  function mountTally() {
-    document.querySelectorAll("[data-tally]").forEach(function (host) {
-      var which = host.getAttribute("data-tally");
-      var id = (window.SITE && window.SITE.tally && window.SITE.tally[which]) || "";
-      var title = host.getAttribute("data-title") || "Form";
-      if (!id || id.indexOf("REPLACE") === 0) {
-        host.className = "setup-needed";
-        host.innerHTML =
-          "<h3>This form is not connected yet</h3>" +
-          "<p>Create the <strong>" + esc(which) + "</strong> form in Tally, then put its form ID in " +
-          "<code>assets/config.js</code> under <code>tally." + esc(which) + "</code>. " +
-          "Step-by-step instructions are in <code>SETUP.md</code>.</p>";
-        return;
-      }
-      host.className = "embed";
-      host.innerHTML =
-        '<iframe src="https://tally.so/embed/' + encodeURIComponent(id) +
-        '?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" ' +
-        'loading="lazy" title="' + esc(title) + '" ' +
-        'referrerpolicy="no-referrer-when-downgrade"></iframe>' +
-        '<noscript><p><a href="https://tally.so/r/' + encodeURIComponent(id) + '">Open the form</a></p></noscript>';
-    });
-
-    /* Tally posts its height as the form grows. */
-    window.addEventListener("message", function (e) {
-      if (typeof e.data !== "string" || e.origin.indexOf("tally.so") === -1) return;
-      try {
-        var msg = JSON.parse(e.data);
-        if (msg.event === "Tally.FormLoaded" || msg.event === "Tally.FormPageChanged") {
-          document.querySelectorAll(".embed iframe").forEach(function (f) {
-            if (msg.payload && msg.payload.height) f.style.minHeight = msg.payload.height + "px";
-          });
-        }
-      } catch (_) { /* not ours */ }
-    });
-  }
-
   /* Geographic and per-year breakdowns on the record page. */
   function fillBreakdown() {
     var stateHost = document.getElementById("by-state");
@@ -258,7 +219,7 @@
   }
 
   function init() {
-    markNav(); fillStats(); fillQuotes(); fillClaims(); fillBreakdown(); mountGoogleForm(); mountTally(); wireCopy();
+    markNav(); fillStats(); fillQuotes(); fillClaims(); fillBreakdown(); mountGoogleForm(); wireCopy();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

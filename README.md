@@ -11,8 +11,7 @@ sam@crossroadstechnology.co.
 | Page | Purpose |
 |---|---|
 | `index.html` | Overview, live totals, the two things to do today |
-| `claim.html` | Claim intake (embedded Google Form) |
-| `evidence.html` | Document upload and permission choices (Tally) — where per-claim follow-up requests land |
+| `claim.html` | Claim intake (Google Form), plus what documents to email and how they may be used |
 | `get-paid.html` | Recovery playbook, ordered by what actually works |
 | `record.html` | The documented pattern: scale, duration, responses, court record, methodology |
 | `about.html` | Who runs this, privacy, corrections |
@@ -33,8 +32,7 @@ to update the numbers, not the HTML.
 ## Editing
 
 Pages are plain HTML with a duplicated header and footer. If you change the nav,
-change it in all seven files (`index`, `claim`, `evidence`, `get-paid`, `record`,
-`about`, `404`).
+change it in all six files (`index`, `claim`, `get-paid`, `record`, `about`, `404`).
 
 Data files:
 
@@ -49,7 +47,7 @@ emails or phone numbers. See the end of [SETUP.md](SETUP.md).
 
 ## Setup
 
-See [SETUP.md](SETUP.md) for the Tally forms, DNS and Pages configuration.
+See [SETUP.md](SETUP.md) for the claim form, DNS and Cloudflare configuration.
 
 ## Accuracy
 

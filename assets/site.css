@@ -249,13 +249,6 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .gform-open { display: block; }
 }
 
-.setup-needed {
-  border: 2px dashed var(--flag-line); background: var(--flag-bg); color: var(--flag);
-  border-radius: var(--radius-lg); padding: 30px; margin: 26px 0;
-}
-.setup-needed h3 { color: var(--flag); }
-.setup-needed code { background: var(--paper); color: var(--ink); padding: 2px 6px; border-radius: 4px; font-family: var(--mono); font-size: .88em; }
-
 /* ---------- misc ---------- */
 .copyblock {
   font-family: var(--mono); font-size: .88rem; line-height: 1.6; white-space: pre-wrap;
