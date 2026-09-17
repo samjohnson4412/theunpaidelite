@@ -1,4 +1,4 @@
-# The Unpaid — theunpaidelite.com
+# The Unpaid Elite — theunpaidelite.com
 
 A public record and recovery toolkit for independent contractors who performed
 mystery shops for **Elite CX Solutions, LLC (dba Elite CXS)** and were not paid.
