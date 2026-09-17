@@ -217,6 +217,38 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 /* ---------- forms / embeds ---------- */
 .embed { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--paper); margin: 26px 0; }
 .embed iframe { display: block; width: 100%; border: 0; min-height: 900px; }
+/* Third-party form embeds. A cross-origin iframe cannot be restyled from here, so
+   Google Forms is always light. Rather than let a white slab collide with a dark
+   page, give it a deliberate light surface in its own colour — it then reads as an
+   inset document rather than a theme bug. */
+.embed.external {
+  background: #f0ebf8;
+  border-color: #cfc6e4;
+  padding: 12px;
+}
+.embed.external iframe {
+  min-height: 1200px;
+  border-radius: 8px;
+  background: #f0ebf8;
+}
+.embed-note {
+  font-size: .85rem;
+  color: var(--ink-3);
+  margin: -14px 0 22px;
+}
+.embed-note strong { color: var(--ink-2); }
+
+/* On a phone, a 1200px iframe inside a scrolling page is a trap: two nested
+   scrollbars and no way to reach the submit button. Send those visitors straight
+   to the form instead. */
+.gform-open { display: none; }
+/* the link-out variant is the page's primary action, shown at every width */
+.gform-open.gform-always { display: block; }
+@media (max-width: 760px) {
+  .embed.external, .embed-note { display: none; }
+  .gform-open { display: block; }
+}
+
 .setup-needed {
   border: 2px dashed var(--flag-line); background: var(--flag-bg); color: var(--flag);
   border-radius: var(--radius-lg); padding: 30px; margin: 26px 0;

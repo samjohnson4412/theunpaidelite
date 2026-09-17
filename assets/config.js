@@ -7,6 +7,13 @@ window.SITE = {
      not belong on a public page. */
   googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSfvVS6ftVTspNXRPTfunV57VHzhTQbl-O4Ogdi2JAfwHV0DXA/viewform",
 
+  /* false  -> a button that opens the form in a new tab (default).
+              Looks right in both light and dark, and avoids a 1200px iframe with
+              its own scrollbar inside a scrolling page.
+     true   -> embed the form inline. It keeps Google's own light styling, so the
+              page frames it as an inset document rather than pretending it matches. */
+  embedClaimForm: false,
+
   tally: {
     /* Document upload + permission choices. A Tally URL looks like
        https://tally.so/r/wABC12 — the ID is the part after /r/. */

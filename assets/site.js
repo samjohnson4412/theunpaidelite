@@ -102,15 +102,36 @@
 
   /* Google Forms embed for the initial claim intake. */
   function mountGoogleForm() {
-    document.querySelectorAll("[data-gform]").forEach(function (host) {
+    Array.prototype.slice.call(document.querySelectorAll("[data-gform]")).forEach(function (host) {
       var url = (window.SITE && window.SITE.googleForm) || "";
       if (!url) { host.remove(); return; }
       var sep = url.indexOf("?") === -1 ? "?" : "&";
-      host.className = "embed";
-      host.innerHTML =
+      var embed = !!(window.SITE && window.SITE.embedClaimForm);
+      /* Always render a real link first: it is the whole experience when not
+         embedding, and the escape hatch if the iframe is ever blocked. */
+      var open_ =
+        '<div class="gform-open"><a class="btn big" href="' + esc(url) + '" ' +
+        'target="_blank" rel="noopener">Open the claim form &rarr;</a>' +
+        '<p style="font-size:.86rem;color:var(--ink-3);margin-top:12px">Opens in a new tab. ' +
+        'No account or sign-in needed.</p></div>';
+      if (!embed) {
+        host.outerHTML =
+          '<div class="gform-open gform-always">' +
+          '<a class="btn big" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+          "Open the claim form &rarr;</a></div>";
+        return;
+      }
+      host.outerHTML =
+        open_ +
+        '<div class="embed external">' +
         '<iframe src="' + esc(url) + sep + 'embedded=true" loading="lazy" ' +
         'title="Elite CXS claim form" referrerpolicy="no-referrer-when-downgrade">' +
-        "Loading the form&hellip;</iframe>";
+        "Loading the form&hellip;</iframe></div>" +
+        '<p class="embed-note"><strong>This form is hosted by Google Forms</strong>, ' +
+        'which is why it keeps its own light styling. ' +
+        '<a href="' + esc(url) + '" target="_blank" rel="noopener">Open it in a new tab</a> ' +
+        "if you would rather fill it out full screen.</p>";
+      return;
     });
     /* Anything with [data-gform-link] points at the same form, so the URL lives in
        one place even for people who open it in a new tab. */
