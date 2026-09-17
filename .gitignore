@@ -1,0 +1,23 @@
+# ── NEVER COMMIT PERSONAL DATA ──────────────────────────────────────────────
+# This repository is published publicly by GitHub Pages. Anything committed here
+# is world-readable forever, including in git history after deletion.
+# The claimant roster lives in Google/Tally, never in this repo.
+*.csv
+*.tsv
+*.xlsx
+roster*
+private/
+responses*
+claimants*
+uploads/
+evidence/
+*-Responses*
+Form?Responses*
+
+# Local noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+node_modules/
