@@ -3,7 +3,8 @@
   "use strict";
 
   var money0 = function (n) {
-    return "$" + Number(n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+    // Floor, never round up: the headline figure must not overstate the total.
+    return "$" + Math.floor(Number(n)).toLocaleString("en-US");
   };
   var money2 = function (n) {
     return "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -35,6 +36,8 @@
           if (v === undefined || v === null) return;
           if (fmt === "money") v = money2(v);
           else if (fmt === "pct") v = v + "%";
+          else if (fmt === "round1k") v = (Math.floor(v / 1000) * 1000).toLocaleString("en-US");
+          else if (fmt === "plain") v = String(v);
           else if (fmt === "money0") v = money0(v);
           else if (typeof v === "number") v = v.toLocaleString("en-US");
           el.textContent = v;

@@ -1,18 +1,18 @@
 {
  "updated": "2026-09-17",
- "people": 81,
- "total_owed": 25780.67,
+ "people": 86,
+ "total_owed": 29465.57,
  "largest": 2500.0,
  "smallest": 25.0,
- "median": 210.0,
- "mean": 322,
+ "median": 215.0,
+ "mean": 347,
  "us_states": 25,
  "intl": [
   "Bermuda",
   "ON (Canada)"
  ],
  "by_state": {
-  "FL": 15,
+  "FL": 17,
   "CA": 8,
   "IL": 8,
   "NY": 8,
@@ -40,9 +40,9 @@
  },
  "by_year": {
   "2020": 1,
-  "2023": 3,
+  "2023": 4,
   "2024": 21,
-  "2025": 39,
+  "2025": 40,
   "2026": 16
  },
  "earliest_year": 2020,
@@ -50,10 +50,10 @@
  "ghosted": 44,
  "got_1099": 5,
  "filed_police": 2,
- "filed_small_claims": 3,
- "tampa_people": 5,
- "tampa_total": 2109.08,
+ "filed_small_claims": 5,
+ "tampa_people": 6,
+ "tampa_total": 3335.08,
  "under_100": 25,
- "over_500": 19,
- "ghosted_pct": 54
+ "over_500": 22,
+ "ghosted_pct": 51
 }
