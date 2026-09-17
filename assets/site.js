@@ -100,6 +100,27 @@
       .catch(function () { host.remove(); });
   }
 
+  /* Google Forms embed for the initial claim intake. */
+  function mountGoogleForm() {
+    document.querySelectorAll("[data-gform]").forEach(function (host) {
+      var url = (window.SITE && window.SITE.googleForm) || "";
+      if (!url) { host.remove(); return; }
+      var sep = url.indexOf("?") === -1 ? "?" : "&";
+      host.className = "embed";
+      host.innerHTML =
+        '<iframe src="' + esc(url) + sep + 'embedded=true" loading="lazy" ' +
+        'title="Elite CXS claim form" referrerpolicy="no-referrer-when-downgrade">' +
+        "Loading the form&hellip;</iframe>";
+    });
+    /* Anything with [data-gform-link] points at the same form, so the URL lives in
+       one place even for people who open it in a new tab. */
+    document.querySelectorAll("[data-gform-link]").forEach(function (a) {
+      var url = (window.SITE && window.SITE.googleForm) || "";
+      if (url) { a.setAttribute("href", url); a.setAttribute("target", "_blank");
+                 a.setAttribute("rel", "noopener"); }
+    });
+  }
+
   /* Tally embeds. Renders a visible setup panel while the form ID is still a placeholder,
      so a half-configured page can never look like a working form. */
   function mountTally() {
@@ -216,7 +237,7 @@
   }
 
   function init() {
-    markNav(); fillStats(); fillQuotes(); fillClaims(); fillBreakdown(); mountTally(); wireCopy();
+    markNav(); fillStats(); fillQuotes(); fillClaims(); fillBreakdown(); mountGoogleForm(); mountTally(); wireCopy();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

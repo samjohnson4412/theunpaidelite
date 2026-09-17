@@ -5,37 +5,31 @@ and pointing the domain at GitHub Pages.
 
 ---
 
-## 1. Create the two Tally forms
+## 1. Forms
 
-Go to [tally.so](https://tally.so) and create a free account. Free covers unlimited
-forms, unlimited responses, and file uploads.
+### Claim intake — Google Forms (already live)
 
-**Turn off "Require respondents to sign in" on both forms.** Every sign-in wall
-costs you responses, and these are people who are already tired of being asked for
-things.
+The initial claim form stays on Google Forms. It is embedded on `claim.html` and the
+URL lives in `assets/config.js` under `googleForm`.
 
-### Form A — "Elite CXS claim"
+The published URL deliberately omits the `ouid=` parameter that Google adds to
+share links — that parameter identifies the form owner's Google account and has no
+business on a public page.
 
-| Field | Type | Required |
-|---|---|---|
-| Full name | Short answer | yes |
-| Email | Email | yes |
-| Phone | Phone | no |
-| City & state you live in | Short answer | yes |
-| Where the shops took place (city/county/state) | Short answer | yes |
-| Which client or location did you shop? | Short answer | no |
-| Total owed (unpaid fees + unreimbursed purchases) | Number, prefix `$` | yes |
-| Dates of work | Short answer — *label it "list all of them"* | yes |
-| Did you contact Elite CXS? What happened? | Long answer | no |
-| Did you receive a 1099 for income you never received? | Yes / No / Not sure | no |
-| Have you filed a police report? | Yes / No | no |
-| Have you filed in small claims? | Yes / No | no |
-| Anything else we should know? | Long answer | no |
+Two things worth fixing on that form when you get a chance:
 
-> The old Google form only accepted **one** date. Six people worked around it by
-> writing extra dates into the free-text box. Make this field accept a list.
+- **The date field only accepts one date.** At least six people worked around it by
+  writing extra dates into the final free-text question. Allowing a list would save
+  everyone the guesswork.
+- **Two submissions put a surname in the email field**, which makes them
+  unreachable. Setting the email question to validate as an email address prevents it.
 
-### Form B — "Elite CXS documents" ← *this is the one the outreach email links to*
+### Document upload — Tally (still to create)
+
+This is the one form you need to build. Go to [tally.so](https://tally.so) and
+create a free account; free covers unlimited forms, unlimited responses and file
+uploads. **Turn off "Require respondents to sign in"** — every sign-in wall costs
+responses, and these are people already tired of being asked for things.
 
 | Field | Type | Required |
 |---|---|---|
@@ -46,9 +40,9 @@ things.
 | Which client or location did you shop? | Short answer | no |
 | Anything we should know about these files? | Long answer | no |
 
-Then three **separate** permission questions. Separate, not one combined checkbox —
-a single "I agree to everything" box is not meaningful consent and will not hold up
-if anyone challenges it.
+Then four **separate** permission questions. Separate, not one combined checkbox — a
+single "I agree to everything" box is not meaningful consent and will not hold up if
+anyone challenges it.
 
 | Permission question | Type |
 |---|---|
@@ -65,17 +59,16 @@ Add a closing note on the form:
 
 ### Then wire them up
 
-Each Tally form has a share URL like `https://tally.so/r/wABC12`. The form ID is the
-part after `/r/`. Put both into `assets/config.js`:
+The Tally form's share URL looks like `https://tally.so/r/wABC12`. The form ID is
+the part after `/r/`. Put it into `assets/config.js`:
 
 ```js
 tally: {
-  claim:    "wABC12",
-  evidence: "wXYZ89"
+  evidence: "wABC12"
 }
 ```
 
-Until you do, both pages show a visible "not connected yet" panel instead of a
+Until you do, `evidence.html` shows a visible "not connected yet" panel instead of a
 broken form — so a half-finished setup can never look like a working one.
 
 ---

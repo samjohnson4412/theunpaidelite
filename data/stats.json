@@ -1,6 +1,7 @@
 {
  "updated": "2026-09-17",
- "people": 85,
+ "people": 86,
+ "open_people": 85,
  "total_owed": 28239.57,
  "largest": 2500.0,
  "smallest": 25.0,
@@ -12,7 +13,7 @@
   "ON (Canada)"
  ],
  "by_state": {
-  "FL": 16,
+  "FL": 17,
   "CA": 8,
   "IL": 8,
   "NY": 8,
@@ -42,7 +43,7 @@
   "2020": 1,
   "2023": 4,
   "2024": 21,
-  "2025": 39,
+  "2025": 40,
   "2026": 16
  },
  "earliest_year": 2020,
@@ -57,5 +58,5 @@
  "over_500": 21,
  "recovered_people": 1,
  "recovered_total": 1226.0,
- "ghosted_pct": 52
+ "ghosted_pct": 51
 }

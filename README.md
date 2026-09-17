@@ -11,8 +11,8 @@ sam@crossroadstechnology.co.
 | Page | Purpose |
 |---|---|
 | `index.html` | Overview, live totals, the two things to do today |
-| `claim.html` | Claim intake (Tally) |
-| `evidence.html` | Document upload and permission choices (Tally) — the outreach email points here |
+| `claim.html` | Claim intake (embedded Google Form) |
+| `evidence.html` | Document upload and permission choices (Tally) — where per-claim follow-up requests land |
 | `get-paid.html` | Recovery playbook, ordered by what actually works |
 | `record.html` | The documented pattern: scale, duration, responses, court record, methodology |
 | `about.html` | Who runs this, privacy, corrections |
